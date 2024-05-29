@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Anger ECMAScript-målversionen
+    "module": "commonjs", // Anger modulhanteraren
+    "outDir": "./dist", // Anger utmatningsmappen för kompilerade filer
+    "rootDir": ".", // Anger rotmappen för ingångsfiler
+    "strict": true, // Aktiverar alla strikta typkontroller
+    "esModuleInterop": true, // Gör det möjligt att importera CommonJS-moduler med standardimport
+    "allowSyntheticDefaultImports": true, // Tillåter syntetiska standardimporter
+    "typeRoots": [
+      "./node_modules/@types" // Anger var typdefinitioner finns
+    ]
+  },
+  "include": ["index.ts"], // Inkluderar endast index.ts-filen i kompileringen
+  "exclude": ["node_modules"] // Exkluderar node_modules-mappen från kompileringen
+}
