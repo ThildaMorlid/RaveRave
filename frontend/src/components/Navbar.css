@@ -1,0 +1,40 @@
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.navbar-brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.navbar-brand p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+}
+
+.navbar-links a:hover {
+  color: #000;
+}
