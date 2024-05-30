@@ -119,6 +119,16 @@ app.delete('/participants/:id', async (req: Request, res: Response) => {
   }
 });
 
+process.on('SIGINT', () => {
+  client.end(err => {
+    console.log('Client disconnected');
+    if (err) {
+      console.error('Error during disconnection', err.stack);
+    }
+    process.exit();
+  });
+});
+
 // Startar servern
 app.listen(3001, () => {
   console.log('Webservice is active on port 3001');
