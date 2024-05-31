@@ -1,10 +1,11 @@
-/* src/components/Navbar.css */
+/* src/components/NavBar.css */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #8b0000;
+  /* Mörkröd bakgrund */
 }
 
 .navbar-brand {
@@ -15,13 +16,18 @@
 
 .navbar-brand h1 {
   margin: 0;
+  font-family: 'Arial', sans-serif;
   font-size: 1.5rem;
+  color: #f5f5dc;
+  /* Beige textfärg */
 }
 
 .navbar-brand p {
   margin: 0;
+  font-family: 'Arial', sans-serif;
   font-size: 1rem;
-  color: #666;
+  color: #f5f5dc;
+  /* Beige textfärg */
 }
 
 .navbar-links {
@@ -31,10 +37,19 @@
 
 .navbar-links a {
   text-decoration: none;
-  color: #333;
-  font-size: 1rem;
+  color: #f5f5dc;
+  /* Beige textfärg */
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, font-weight 0.3s ease;
+  /* Lägg till transition */
 }
 
 .navbar-links a:hover {
-  color: #000;
+  font-weight: bolder;
+  /* Fetare text vid hover */
+  transform: scale(1.1);
+  /* Skala upp texten lite vid hover */
 }
