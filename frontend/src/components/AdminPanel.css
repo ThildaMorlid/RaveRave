@@ -1,0 +1,60 @@
+/*CSS FÖR ADMINPANEL*/
+
+.admin-panel {
+  padding: 20px;
+  background-color: #8b0000;
+  border-radius: 8px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.admin-panel h1 {
+  text-align: center;
+  color: #f5f5dc;
+}
+
+.admin-panel form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-panel label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #f5f5dc;
+  /* Beige textfärg */
+}
+
+.admin-panel input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f5f5dc;
+  color: #8b0000;
+}
+
+.admin-panel button {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #f5f5dc;
+  color: #8b0000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.admin-panel button:hover {
+  transform: scale(1.1);
+  /* Skala upp knappen lite vid hover */
+  background-color: #f0e68c;
+  /* Ändra till en ljusare färg vid hover */
+}
+
+.admin-panel p {
+  text-align: center;
+  color: green;
+}

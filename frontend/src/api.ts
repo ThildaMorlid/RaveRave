@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3001';
 
 export interface User {
-  id: number; // 'id' is now required and must be a number
+  id: number;
   username: string;
   email: string;
   password: string;
@@ -12,8 +12,11 @@ export interface User {
 
 export interface Event {
   id: number;
-  name: string;
+  title: string;
+  description: string;
   date: string;
+  location: string;
+  organizerid: number;
 }
 
 export const fetchUsers = async (): Promise<User[]> => {
@@ -31,4 +34,7 @@ export const fetchEvents = async (): Promise<Event[]> => {
   return response.data;
 };
 
-// Andra API-förfrågningar kan läggas till här
+export const addEvent = async (event: { title: string; description: string; date: string; location: string; organizerid: number }) => {
+  const response = await axios.post(`${API_URL}/events`, event);
+  return response.data;
+};

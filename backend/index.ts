@@ -50,6 +50,21 @@ app.get('/events', async (req: Request, res: Response) => {
   }
 });
 
+// POST för att skapa ett nytt event
+app.post('/events', async (req: Request, res: Response) => {
+  const { title, description, date, location, organizerid } = req.body;
+  try {
+    const { rows } = await client.query(
+      'INSERT INTO Events (title, description, date, location, organizerid) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [title, description, date, location, organizerid]
+    );
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error('Error executing query', (err as Error).stack);
+    res.status(500).send(`Error executing query: ${(err as Error).message}`);
+  }
+});
+
 // POST förfrågan för nya användare
 app.post('/users', async (req: Request, res: Response) => {
   const { username, email, password, role } = req.body;

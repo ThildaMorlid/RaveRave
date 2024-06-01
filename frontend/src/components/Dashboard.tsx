@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
       <ul>
         {events.map((event) => (
           <li key={event.id}>
-            {event.name} - {event.date}
+            {event.title} - {event.date}
           </li>
         ))}
       </ul>
