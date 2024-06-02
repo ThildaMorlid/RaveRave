@@ -10,7 +10,7 @@
 
 .admin-panel h1 {
   text-align: center;
-  color: #f5f5dc;
+  color: #FAFF03;
 }
 
 .admin-panel form {
@@ -21,7 +21,7 @@
 .admin-panel label {
   margin: 10px 0 5px;
   font-weight: bold;
-  color: #f5f5dc;
+  color: #FAFF03;
   /* Beige textfärg */
 }
 
@@ -31,7 +31,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f5f5dc;
-  color: #8b0000;
+  color: #FAFF03;
 }
 
 .admin-panel button {
@@ -40,7 +40,7 @@
   font-weight: bold;
   text-transform: uppercase;
   background-color: #f5f5dc;
-  color: #8b0000;
+  color: #FAFF03;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -56,5 +56,5 @@
 
 .admin-panel p {
   text-align: center;
-  color: green;
+  color: #FAFF03;
 }

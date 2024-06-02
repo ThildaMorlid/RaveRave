@@ -4,8 +4,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #8b0000;
-  /* Mörkröd bakgrund */
+  background-color: #E01BEC;
+  /* Ljuslila bakgrund */
+  z-index: 100;
+  /* Se till att detta är tillräckligt högt för att hålla navbaren ovanpå andra innehåll */
 }
 
 .navbar-brand {
@@ -18,16 +20,20 @@
   margin: 0;
   font-family: 'Arial', sans-serif;
   font-size: 1.5rem;
-  color: #f5f5dc;
-  /* Beige textfärg */
+  color: #FAFF03;
+  /* Guldig gul textfärg */
+  text-shadow: 3px 3px 0px #000;
+  /* Lägg till fet svart skugga */
 }
 
 .navbar-brand p {
   margin: 0;
   font-family: 'Arial', sans-serif;
   font-size: 1rem;
-  color: #f5f5dc;
-  /* Beige textfärg */
+  color: #FAFF03;
+  /* Guldig gul textfärg */
+  text-shadow: 2px 2px 0px #000;
+  /* Lägg till fet svart skugga */
 }
 
 .navbar-links {
@@ -37,19 +43,18 @@
 
 .navbar-links a {
   text-decoration: none;
-  color: #f5f5dc;
-  /* Beige textfärg */
+  color: #FAFF03;
+  /* Guldig gul textfärg */
   font-family: 'Arial', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: transform 0.3s ease, font-weight 0.3s ease;
-  /* Lägg till transition */
+  text-shadow: 2px 2px 0px #000;
+  /* Lägg till fet svart skugga */
 }
 
 .navbar-links a:hover {
   font-weight: bolder;
-  /* Fetare text vid hover */
   transform: scale(1.1);
-  /* Skala upp texten lite vid hover */
 }

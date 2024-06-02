@@ -1,48 +1,47 @@
-.home {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: #8b0000;
-  padding-top: 50px;
-  box-sizing: border-box;
+/* Home.css */
+.home-text {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  color: #FAFF03;
+  /* Guldig gul textfärg */
+  text-shadow: 3px 3px 0px #000;
+  /* Fet svart skugga */
 }
 
-.home-text {
+.home-text h1 {
   font-family: 'Arial', sans-serif;
   font-size: 5rem;
   font-weight: bold;
   text-transform: uppercase;
-  color: #f5f5dc;
   margin: 0;
-  border: none;
-}
-
-.event {
-  margin-top: 50px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.event img {
-  max-width: 100%;
-  height: auto;
-}
-
-.register-button {
-  display: inline-block;
-  margin-top: 20px;
   padding: 10px 20px;
+  color: #FAFF03;
+}
+
+.home-text p {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #FAFF03;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
   background-color: #f5f5dc;
-  color: #8b0000;
-  font-size: 1rem;
+  color: #E01BEC;
   font-weight: bold;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.register-button:hover {
+.button:hover {
   background-color: #ffe4c4;
   transform: scale(1.1);
 }
