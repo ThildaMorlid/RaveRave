@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import smileyImage from '../img/smiley.png';
 
 const SmileyContainer: React.FC = () => {
   const smileysRef = useRef<HTMLImageElement[]>([]);
@@ -22,7 +21,7 @@ const SmileyContainer: React.FC = () => {
 
     return () => {
       smileysRef.current.forEach(smiley => {
-        if (smiley) { 
+        if (smiley) {
           smiley.removeEventListener('mouseenter', () => handleMouseEnter(smiley));
           smiley.removeEventListener('mouseleave', () => handleMouseLeave(smiley));
         }
@@ -48,7 +47,7 @@ const SmileyContainer: React.FC = () => {
         <img
           ref={el => smileysRef.current[index] = el as HTMLImageElement}
           key={index}
-          src={smileyImage}
+          src="/img/smiley.png"
           alt="Smiley"
           style={{
             width: '40vw',
