@@ -14,6 +14,8 @@ const client = new Client({
   }
 });
 
+const PASSWORD = process.env.ADMIN_PASSWORD;
+
 // Ansluter till databasen
 client.connect(err => {
   if (err) {
@@ -28,17 +30,6 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // Middleware för att hantera JSON body parsing
 
-// GET för users
-app.get('/users', async (req: Request, res: Response) => {
-  try {
-    const { rows } = await client.query('SELECT * FROM Users');
-    res.json(rows);
-  } catch (err) {
-    console.error('Error executing query', (err as Error).stack);
-    res.status(500).send(`Error executing query: ${(err as Error).message}`);
-  }
-});
-
 // GET för events
 app.get('/events', async (req: Request, res: Response) => {
   try {
@@ -50,71 +41,11 @@ app.get('/events', async (req: Request, res: Response) => {
   }
 });
 
-// POST för att skapa ett nytt event
-app.post('/events', async (req: Request, res: Response) => {
-  const { title, description, date, location, organizerid } = req.body;
-  try {
-    const { rows } = await client.query(
-      'INSERT INTO Events (title, description, date, location, organizerid) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [title, description, date, location, organizerid]
-    );
-    res.status(201).json(rows[0]);
-  } catch (err) {
-    console.error('Error executing query', (err as Error).stack);
-    res.status(500).send(`Error executing query: ${(err as Error).message}`);
-  }
-});
-
-// POST förfrågan för nya användare
-app.post('/users', async (req: Request, res: Response) => {
-  const { username, email, password, role } = req.body;
-  try {
-    const { rows } = await client.query(
-      'INSERT INTO Users (username, email, password, role) VALUES ($1, $2, $3, $4) RETURNING *',
-      [username, email, password, role]
-    );
-    res.status(201).json(rows[0]);
-  } catch (err) {
-    console.error('Error executing query', (err as Error).stack);
-    res.status(500).send(`Error executing query: ${(err as Error).message}`);
-  }
-});
-
-// POST för participants
-app.post('/participants', async (req: Request, res: Response) => {
-  const { eventId, userId, status } = req.body;
-  try {
-    const { rows } = await client.query(
-      'INSERT INTO Participants (eventId, userId, status) VALUES ($1, $2, $3) RETURNING *',
-      [eventId, userId, status]
-    );
-    res.status(201).json(rows[0]);
-  } catch (err) {
-    console.error('Error executing query', (err as Error).stack);
-    res.status(500).send(`Error executing query: ${(err as Error).message}`);
-  }
-});
-
-// GET för participants
-app.get('/participants', async (req: Request, res: Response) => {
-  try {
-    const { rows } = await client.query('SELECT * FROM Participants');
-    res.json(rows);
-  } catch (err) {
-    console.error('Error executing query', (err as Error).stack);
-    res.status(500).send(`Error executing query: ${(err as Error).message}`);
-  }
-});
-
-// PUT för att uppdatera status på en participant
-app.put('/participants/:id', async (req: Request, res: Response) => {
+// GET för enskilt event
+app.get('/events/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { status } = req.body;
   try {
-    const { rows } = await client.query(
-      'UPDATE Participants SET status = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2 RETURNING *',
-      [status, id]
-    );
+    const { rows } = await client.query('SELECT * FROM Events WHERE id = $1', [id]);
     res.json(rows[0]);
   } catch (err) {
     console.error('Error executing query', (err as Error).stack);
@@ -122,12 +53,53 @@ app.put('/participants/:id', async (req: Request, res: Response) => {
   }
 });
 
-// DELETE för att ta bort en participant
-app.delete('/participants/:id', async (req: Request, res: Response) => {
-  const { id } = req.params;
+// POST för att hämta attendees för event med lösenord
+app.get('/events/:id/attendees/:password', async (req: Request, res: Response) => {
+  const { id, password } = req.params;
+  if (password.trim() !== PASSWORD) {
+    return res.status(401).send('Invalid password');
+  }
   try {
-    await client.query('DELETE FROM Participants WHERE id = $1', [id]);
-    res.sendStatus(204);
+    const { rows } = await client.query(
+      'SELECT * FROM Attendees WHERE event_id = $1',
+      [id]
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error('Error executing query', (err as Error).stack);
+    res.status(500).send(`Error executing query: ${(err as Error).message}`);
+  }
+});
+
+// POST för att skapa ett nytt event
+app.post('/events', async (req: Request, res: Response) => {
+  const { event, password } = req.body;
+  const { title, description, date, location, img_url } = event;
+  if (password.trim() !== PASSWORD) {
+    return res.status(401).send('Invalid password');
+  }
+  try {
+    const { rows } = await client.query(
+      'INSERT INTO Events (title, description, date, location, img_url) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [title, description, date, location, img_url]
+    );
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error('Error executing query', (err as Error).stack);
+    res.status(500).send(`Error executing query: ${(err as Error).message}`);
+  }
+});
+
+// POST för att skapa ny attendee
+app.post('/events/:id/attendees', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { name, email, phone } = req.body;
+  try {
+    const { rows } = await client.query(
+      'INSERT INTO Attendees (name, email, phone, event_id) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, email, phone, id]
+    );
+    res.status(201).json(rows[0]);
   } catch (err) {
     console.error('Error executing query', (err as Error).stack);
     res.status(500).send(`Error executing query: ${(err as Error).message}`);
