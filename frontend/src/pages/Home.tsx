@@ -1,6 +1,6 @@
 // Home.tsx
 import React from 'react';
-import SmileyContainer from './SmileyContainer';
+import SmileyContainer from '../components/SmileyContainer';
 import './Home.css';
 
 
