@@ -2,30 +2,31 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3001';
 
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  role: string;
-}
-
 export interface Event {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  organizerid: number;
+  id: number
+  title: string
+  date: string
+  img_url: string
+  description: string
+  location: string
 }
 
-export const fetchUsers = async (): Promise<User[]> => {
-  const response = await axios.get(`${API_URL}/users`);
+export type EventWithoutId = Omit<Event, 'id'>;
+
+export interface Attendee {
+  name: string
+  email: string
+  phone: string
+  eventid: number
+}
+
+export const fetchAttendees = async (event_id: number, password: string): Promise<Attendee[]> => {
+  const response = await axios.get(`${API_URL}/events/${event_id}/attendees/${password}`);
   return response.data;
 };
 
-export const addUser = async (user: Omit<User, 'id'>): Promise<User> => {
-  const response = await axios.post(`${API_URL}/users`, user);
+export const addAttendeeToEvent = async (eventid: number, attendee: Attendee): Promise<void> => {
+  const response = await axios.post(`${API_URL}/events/${eventid}/attendees`, attendee);
   return response.data;
 };
 
@@ -34,7 +35,12 @@ export const fetchEvents = async (): Promise<Event[]> => {
   return response.data;
 };
 
-export const addEvent = async (event: { title: string; description: string; date: string; location: string; organizerid: number }) => {
-  const response = await axios.post(`${API_URL}/events`, event);
+export const fetchEvent = async (id: number): Promise<Event> => {
+  const response = await axios.get(`${API_URL}/events/${id}`);
+  return response.data;
+};
+
+export const addEvent = async (data: { event: EventWithoutId, password: string}) => {
+  const response = await axios.post(`${API_URL}/events`, data);
   return response.data;
 };
