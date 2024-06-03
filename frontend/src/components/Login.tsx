@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { loginUser } from '../api';
 
 const Login: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
+  const [message, setMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -10,9 +12,23 @@ const Login: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    console.log("Submitted")
     e.preventDefault();
+    try {
     // Handle login logic
+    const response = await loginUser(form);
+      setMessage('' + response)
+    }
+    catch (error: any) {
+    if (error.response && error.response.data) {
+      // Hantera specifika felmeddelanden från backend
+        setMessage('Error logging in: ' + error.response.data);
+      }
+    else {
+      setMessage('Error logging in.');
+    }
+  }
   };
 
   return (
@@ -29,6 +45,7 @@ const Login: React.FC = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };

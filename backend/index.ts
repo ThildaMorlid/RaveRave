@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { Client } from 'pg';
+import { isNull } from 'util';
 
 // Laddar konfiguration från .env-filen
 dotenv.config();
@@ -59,6 +60,52 @@ app.post('/users', async (req: Request, res: Response) => {
       [username, email, password, role]
     );
     res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error('Error executing query', (err as Error).stack);
+    res.status(500).send(`Error executing query: ${(err as Error).message}`);
+  }
+});
+
+// POST förfrågan för inloggning
+app.post('/login', async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  try {
+      // För user som den requestar
+      // Hämta först lösenord och kolla att det stämmer.
+      // Om det stämmer, hämta roll och skicka tillbaka innehåll för roll
+      // Annars felmeddelande
+
+    const { rows } = await client.query(
+      'SELECT * FROM USERS' //"SELECT * FROM USERS WHERE email = '$1'",[email]
+    );
+    var user = null
+    for (let i=0; i < rows.length; i++){
+      if (rows[i].email == email) {
+        user = rows[i]
+        break
+      }
+    }
+    // Kolla om vi hittade en användare med den emailen
+    if (user == null) {
+      // Här ska vi egentligen ge ett felmeddelande.
+      console.log("User does not exist!")
+    }
+    else {
+      if (user.password == password) {
+        console.log("Password is correct.")
+        console.log("User role is ",user.role)
+        if (user.role == 'member') {
+          res.status(201).send('User role is member')
+        }
+        // Skicka tillbaka till frontend vad den ska visa beroende på vilken roll user.role är.
+      }
+      else {
+        console.log("Password is incorrect!")
+        // Ge felmeddelande om fel lösenord.
+      }
+
+    }
+    //res.status(201).json(rows[0]);
   } catch (err) {
     console.error('Error executing query', (err as Error).stack);
     res.status(500).send(`Error executing query: ${(err as Error).message}`);
