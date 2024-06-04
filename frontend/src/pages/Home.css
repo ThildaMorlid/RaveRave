@@ -8,6 +8,7 @@
   position: relative;
   justify-content: flex-start;
   align-items: center;
+
 }
 
 .hero-content {
@@ -23,4 +24,35 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 3rem;
+}
+
+
+@media (max-width: 768px) {
+  .home-hero {
+    height: 50vh;
+    justify-content: center;
+  }
+
+  .hero-content {
+    padding-top: 4rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    max-width: 90%;
+
+  }
+
+  .events-list {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
+
+ .rave-title {
+   font-size: 1.8 rem;
+   max-width: 90%;
+ }
+
+ .rave-subtitle {
+   font-size: 1rem;
+   max-width: 90%;
+ }
 }

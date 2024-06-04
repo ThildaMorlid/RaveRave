@@ -4,9 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--primary-color);
-  /* Ljuslila bakgrund */
   z-index: 100;
-  /* Se till att detta är tillräckligt högt för att hålla navbaren ovanpå andra innehåll */
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -22,9 +20,7 @@
   font-family: 'Arial', sans-serif;
   font-size: 1.5rem;
   color: #FAFF03;
-  /* Guldig gul textfärg */
   text-shadow: 3px 3px 0px #000;
-  /* Lägg till fet svart skugga */
 }
 
 .navbar-brand p {
@@ -32,9 +28,7 @@
   font-family: 'Arial', sans-serif;
   font-size: 1rem;
   color: #FAFF03;
-  /* Guldig gul textfärg */
   text-shadow: 2px 2px 0px #000;
-  /* Lägg till fet svart skugga */
 }
 
 .navbar-links {
@@ -45,17 +39,47 @@
 .navbar-links a {
   text-decoration: none;
   color: #FAFF03;
-  /* Guldig gul textfärg */
   font-family: 'Arial', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: transform 0.3s ease, font-weight 0.3s ease;
   text-shadow: 2px 2px 0px #000;
-  /* Lägg till fet svart skugga */
 }
 
 .navbar-links a:hover {
   font-weight: bolder;
   transform: scale(1.1);
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    /* Centrera innehållet i responsivt läge */
+  }
+
+  .navbar-brand h1 {
+    font-size: 1rem;
+
+    margin-bottom: 0.5rem;
+
+  }
+
+    .navbar-brand p {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  .navbar-links a {
+    font-size: 0.8rem;
+  }
 }
