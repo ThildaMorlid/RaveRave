@@ -9,8 +9,8 @@ const Navbar: React.FC = () => {
     <nav className="container navbar">
       <Link to="/">
         <div className="navbar-brand">
-          <h1>RAVE RAVE</h1>
-          <p>We are a rave community based in Sthlm</p>
+          <h1>RAVERAVE</h1>
+          <p>Underground music events in Stockholm</p>
         </div>
       </Link>
       <div className="navbar-links">

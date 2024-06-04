@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Event from './pages/Event';
 import AdminPanel from './pages/AdminPanel';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
         <Route path="/events/:id" element={<Event />} />
         <Route path="/admin" element={<AdminPanel />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
