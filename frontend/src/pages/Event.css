@@ -1,0 +1,12 @@
+.event-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-signup {
+    width: 50vw;
+}
+
+.event-admin {
+    width: 50vw;
+}
