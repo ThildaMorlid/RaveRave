@@ -40,6 +40,11 @@ export const fetchEvent = async (id: number): Promise<Event> => {
   return response.data;
 };
 
+export const deleteEvent = async (id: number, password: string): Promise<void> => {
+  const response = await axios.delete(`${API_URL}/events/${id}/${password}`);
+  return response.data;
+};
+
 export const addEvent = async (data: { event: EventWithoutId, password: string}) => {
   const response = await axios.post(`${API_URL}/events`, data);
   return response.data;

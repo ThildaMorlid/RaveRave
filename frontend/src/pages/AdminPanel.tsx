@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import type { EventWithoutId } from '../api';
 import { addEvent } from '../api';
+import './AdminPanel.css';
 
 const AdminPanel: React.FC = () => {
   const [event, setEvent] = useState<EventWithoutId>({ title: '', description: '', date: '', location: '', img_url: '' });
   const [password, setPassword] = useState('');
+  const [submitted, setSubmitted] = useState(false);
   const [message, setMessage] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setEvent({
       ...event,
       [e.target.name]: e.target.value,
@@ -24,41 +26,44 @@ const AdminPanel: React.FC = () => {
       const data = { event: event, password: password };
       const response = await addEvent(data);
       setMessage(`Event ${response.title} created successfully!`);
+      setSubmitted(true);
     } catch (error: any) {
       setMessage('Error creating event: ' + (error.response ? error.response.data : error.message));
     }
   };
 
   return (
-    <div>
-      <h1>Admin Panel</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Password</label>
-          <input type="password" name='password' value={password} onChange = {handlePasswordChange}/>
-        </div>
-        <div>
-          <label>Event Title</label>
-          <input type="text" name='title' value={event.title} onChange = {handleChange}/>
-        </div>
-        <div>
-          <label>Event Description</label>
-          <input type="text" name = 'description'value={event.description} onChange = {handleChange}/>
-        </div>
-        <div>
-          <label>Image URL</label>
-          <input type="text" name = 'img_url'value={event.img_url} onChange = {handleChange}/>
-        </div>
-        <div>
-          <label>Event Date</label>
-          <input type="date" name = 'date' value={event.date} onChange = {handleChange}/>
-        </div>
-        <div>
-          <label>Event Location</label>
-          <input type="text" name = 'location' value={event.location} onChange = {handleChange}/>
-        </div>
-        <button type="submit">Create Event</button>
-      </form>
+    <div className="admin-panel">
+      <div className="rave-title">Add Event</div>
+      {!submitted && (
+        <form className="rave-form" onSubmit={handleSubmit}>
+          <div>
+            <label>Password</label>
+            <input type="password" name='password' value={password} onChange = {handlePasswordChange}/>
+          </div>
+          <div>
+            <label>Event Title</label>
+            <input type="text" name='title' value={event.title} onChange = {handleChange}/>
+          </div>
+          <div>
+            <label>Event Description</label>
+            <textarea name = 'description' value={event.description} onChange = {handleChange}/>
+          </div>
+          <div>
+            <label>Image URL</label>
+            <input type="text" name = 'img_url'value={event.img_url} onChange = {handleChange}/>
+          </div>
+          <div>
+            <label>Event Date</label>
+            <input type="date" name = 'date' value={event.date} onChange = {handleChange}/>
+          </div>
+          <div>
+            <label>Event Location</label>
+            <input type="text" name = 'location' value={event.location} onChange = {handleChange}/>
+          </div>
+          <button type="submit">Create Event</button>
+        </form>
+      )}
       {message && <p>{message}</p>}
     </div>
   );

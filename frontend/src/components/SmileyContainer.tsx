@@ -30,17 +30,19 @@ const SmileyContainer: React.FC = () => {
   }, []);
 
   const positions = Array.from({ length: 50 }, (_, index) => ({
-    top: `${Math.random() * 120}%`,
+    top: `${(Math.random() * 100) - 50}%`,
     left: `${Math.random() * 120}%`,
     rotate: `rotate(${Math.random() * 360}deg)`
   }));
 
   return (
     <div style={{
-      position: 'relative',
+      position: 'absolute',
+      left: 0,
+      top: 0,
       width: '150vw',
       height: '150vh',
-      overflow: 'viseble',
+      overflow: 'visible',
       zIndex: 0
     }}>
       {positions.map((pos, index) => (

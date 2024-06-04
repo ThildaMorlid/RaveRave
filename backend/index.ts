@@ -90,6 +90,24 @@ app.post('/events', async (req: Request, res: Response) => {
   }
 });
 
+// DELETE för att ta bort ett event
+app.delete('/events/:id/:password', async (req: Request, res: Response) => {
+  const { id, password } = req.params;
+  if (password.trim() !== PASSWORD) {
+    return res.status(401).send('Invalid password');
+  }
+  try {
+    const { rows } = await client.query(
+      'DELETE CASCADE FROM Events WHERE id = $1',
+      [id]
+    );
+    res.status(200).json(rows[0]);
+  } catch (err) {
+    console.error('Error executing query', (err as Error).stack);
+    res.status(500).send(`Error executing query: ${(err as Error).message}`);
+  }
+});
+
 // POST för att skapa ny attendee
 app.post('/events/:id/attendees', async (req: Request, res: Response) => {
   const { id } = req.params;

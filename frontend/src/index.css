@@ -1,6 +1,20 @@
-/* index.css */
-
 /* Globala stilar för hela sidan */
+
+/* index.css */
+:root {
+  --primary-color: #E01BEC;
+  --secondary-color: #FAFF03;
+  --black: #000;
+  --white: #fff;
+  --outline-color: #000;
+  --outline-thickness: 5px;
+  --blur-radius: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -23,6 +37,70 @@ a {
   /* Beige textfärg */
 }
 
+.container {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.rave-title {
+  z-index: 10;
+  color: var(--secondary-color);
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: var(--outline-thickness);
+  -webkit-text-stroke-color: var(--black);
+  margin-bottom: 1rem;
+}
+
+.rave-subtitle {
+  z-index: 10;
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--white);
+  padding: 0.4rem;
+}
+
+.rave-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.rave-form label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.rave-form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.rave-form textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 150px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  background-color: #f5f5dc;
+  color: var(--primary-color);
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
 /* Stil för knappar */
 button {
   font-family: 'Arial', sans-serif;
@@ -35,12 +113,16 @@ button {
   /* Mörkröd textfärg */
   border: none;
   padding: 10px 20px;
-  cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
   /* Lägg till transition */
 }
 
-button:hover {
+button:disabled {
+  cursor: unset;
+  color: #fa9dff
+}
+
+button:not(:disabled):hover {
   transform: scale(1.1);
   /* Skala upp knappen lite vid hover */
   background-color: #f0e68c;

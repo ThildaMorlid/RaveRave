@@ -1,47 +1,26 @@
 /* Home.css */
-.home-text {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  color: #FAFF03;
-  /* Guldig gul textfärg */
-  text-shadow: 3px 3px 0px #000;
-  /* Fet svart skugga */
+
+.home-hero {
+  width: 100vw;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.home-text h1 {
-  font-family: 'Arial', sans-serif;
-  font-size: 5rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 10px 20px;
-  color: #FAFF03;
+.hero-content {
+  z-index: 100;
 }
 
-.home-text p {
-  font-family: 'Arial', sans-serif;
-  font-size: 1.5rem;
-  margin: 10px 0;
-  color: #FAFF03;
+.events-container {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
-.button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-top: 20px;
-  background-color: #f5f5dc;
-  color: #E01BEC;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.button:hover {
-  background-color: #ffe4c4;
-  transform: scale(1.1);
+.events-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
 }
