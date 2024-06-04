@@ -166,10 +166,16 @@ const EventPage: React.FC = () => {
         </div>
         {attendees.length > 0 && (
           <>
-            <h1>Attendees</h1>
-            {attendees.map((attendee) => (
-              <div key={attendee.email}>{attendee.name}</div>
-            ))}
+            <div className="rave-subtitle" style={{ marginBottom: '2rem' }}>Attendees</div>
+            <div className="event-attendees">
+              {attendees.map((attendee) => (
+                <>
+                 <div>{attendee.name}</div>
+                 <div>{attendee.email}</div>
+                 <div>{attendee.phone}</div>
+                </>
+              ))}
+            </div>
           </>
         )}
       </div>
