@@ -1,12 +1,17 @@
+-- The following commands will delete any existing tables and sequences (uncomment all DROP lines if you want to start from scratch)
+
 -- Drop the attendees table and any dependent objects
-DROP TABLE IF EXISTS attendees CASCADE;
+-- DROP TABLE IF EXISTS attendees CASCADE;
 
 -- Drop the events table and any dependent objects
-DROP TABLE IF EXISTS events CASCADE;
+-- DROP TABLE IF EXISTS events CASCADE;
 
 -- Drop related sequences if they exist and are not automatically dropped
-DROP SEQUENCE IF EXISTS events_id_seq;
-DROP SEQUENCE IF EXISTS attendees_id_seq;-- Event table
+-- DROP SEQUENCE IF EXISTS events_id_seq;
+-- DROP SEQUENCE IF EXISTS attendees_id_seq;-- Event table
+
+
+-- The following commands will create the attendees table and any dependent objects
 
 CREATE TABLE events (
   id SERIAL PRIMARY KEY,

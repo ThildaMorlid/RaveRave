@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #E01BEC;
+  background-color: var(--primary-color);
   /* Ljuslila bakgrund */
   z-index: 100;
   /* Se till att detta är tillräckligt högt för att hålla navbaren ovanpå andra innehåll */
