@@ -36,3 +36,29 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 }
+
+@media (max-width: 768px) {
+    .event-signup,
+    .event-admin {
+      width: 90vw;
+    }
+
+    .event-attendees {
+      grid-template-columns: 1fr; /* Gör kolumnerna till en enda kolumn */
+    }
+
+    .event-image {
+      height: auto; /* Gör att höjden anpassar sig efter bildens proportioner */
+      width: 100%;
+    }
+
+    .event-image img {
+        height: auto;
+      width: 100%; /* Se till att bilden är 100% bred i förhållande till sin container */
+    }
+
+    .rave-title {
+        font-size: 3rem; /* Mindre storlek i responsivt läge */
+      }
+
+  }

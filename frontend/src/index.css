@@ -128,3 +128,11 @@ button:not(:disabled):hover {
   background-color: #f0e68c;
   /* Ändra till en ljusare färg vid hover */
 }
+
+@media (max-width: 768px) {
+
+  .admin-panel {
+    grid-template-columns: 1fr;
+    grid-gap: 2em;
+  }
+}

@@ -24,3 +24,24 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 3rem;
 }
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item-left {
+  flex: 50%;
+}
+
+.flex-item-right {
+  flex: 50%;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (min-width: 365px) {
+  .flex-item-right, .flex-item-left {
+    flex: 100%;
+  }
+}
