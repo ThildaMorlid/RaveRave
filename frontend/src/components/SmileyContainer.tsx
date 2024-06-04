@@ -35,14 +35,16 @@ const SmileyContainer: React.FC = () => {
   }, []); // Notera att beroendelistan är tom, vilket betyder att detta bara körs en gång vid mount
 
   const positions = Array.from({ length: 50 }, (_, index) => ({
-    top: `${Math.random() * 120}%`,
+    top: `${(Math.random() * 100) - 50}%`,
     left: `${Math.random() * 120}%`,
     rotate: `rotate(${Math.random() * 360}deg)`
   }));
 
   return (
     <div style={{
-      position: 'relative',
+      position: 'absolute',
+      left: 0,
+      top: 0,
       width: '150vw',
       height: '150vh',
       overflow: 'visible',

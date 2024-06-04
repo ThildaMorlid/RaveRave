@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_API_URL;
 
 export interface Event {
   id: number
@@ -37,6 +37,11 @@ export const fetchEvents = async (): Promise<Event[]> => {
 
 export const fetchEvent = async (id: number): Promise<Event> => {
   const response = await axios.get(`${API_URL}/events/${id}`);
+  return response.data;
+};
+
+export const deleteEvent = async (id: number, password: string): Promise<void> => {
+  const response = await axios.delete(`${API_URL}/events/${id}/${password}`);
   return response.data;
 };
 
