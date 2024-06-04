@@ -5,6 +5,7 @@ import Events from './pages/Events';
 import Event from './pages/Event';
 import AdminPanel from './pages/AdminPanel';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css';
 
 const App: React.FC = () => {
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/events/:id" element={<Event />} />
         <Route path="/admin" element={<AdminPanel />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
