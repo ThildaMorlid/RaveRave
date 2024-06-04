@@ -3,11 +3,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: #E01BEC;
   /* Ljuslila bakgrund */
   z-index: 100;
   /* Se till att detta är tillräckligt högt för att hålla navbaren ovanpå andra innehåll */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .navbar-brand {

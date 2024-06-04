@@ -20,7 +20,7 @@ CREATE TABLE events (
 -- Attendee table
 CREATE TABLE attendees (
   id SERIAL PRIMARY KEY,
-  event_id INTEGER NOT NULL REFERENCES events (id),
+  event_id INTEGER NOT NULL REFERENCES events (id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   email TEXT NOT NULL,
   phone TEXT NOT NULL,

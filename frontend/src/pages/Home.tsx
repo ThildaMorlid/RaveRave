@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         </div>
         <SmileyContainer />
       </div>
-      <div className="events-container container">
+      <div className="events-container container" id="events">
         <div className="rave-title">
           Events
         </div>

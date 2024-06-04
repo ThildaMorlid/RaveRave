@@ -25,8 +25,12 @@ const AdminPanel: React.FC = () => {
     try {
       const data = { event: event, password: password };
       const response = await addEvent(data);
-      setMessage(`Event ${response.title} created successfully!`);
+      setMessage(`Event ${response.title} created successfully! Redirecting to event...`);
       setSubmitted(true);
+      // Redirect to event after three seconds
+      setTimeout(() => {
+        window.location.href = `/events/${response.id}`;
+      }, 3000);
     } catch (error: any) {
       setMessage('Error creating event: ' + (error.response ? error.response.data : error.message));
     }
@@ -61,7 +65,7 @@ const AdminPanel: React.FC = () => {
             <label>Event Location</label>
             <input type="text" name = 'location' value={event.location} onChange = {handleChange}/>
           </div>
-          <button type="submit">Create Event</button>
+          <button disabled={!event.title || !event.description || !event.date || !event.location || !event.img_url} type="submit">Create Event</button>
         </form>
       )}
       {message && <p>{message}</p>}

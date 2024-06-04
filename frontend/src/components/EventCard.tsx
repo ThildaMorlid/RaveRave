@@ -11,7 +11,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   return (
     <div className="event-card">
       <div className="event-card-image">
-        <img src="{event.img_url}" alt="Event image" />
+        <img src={event.img_url} alt="Event image" />
       </div>
       <div className="event-card-header">
         <div className="event-card-title">

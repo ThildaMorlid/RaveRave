@@ -98,7 +98,7 @@ app.delete('/events/:id/:password', async (req: Request, res: Response) => {
   }
   try {
     const { rows } = await client.query(
-      'DELETE CASCADE FROM Events WHERE id = $1',
+      'DELETE FROM Events WHERE id = $1',
       [id]
     );
     res.status(200).json(rows[0]);
