@@ -41,7 +41,7 @@ const Home: React.FC = () => {
             Welcome to RaveRave
           </div>
           <div className="rave-subtitle">
-            RaveRave is a place where you can register for members only events.
+            A place where you can register for members only events.
           </div>
         </div>
         <SmileyContainer />
